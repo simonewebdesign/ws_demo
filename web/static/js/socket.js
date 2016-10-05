@@ -65,6 +65,15 @@ setInterval(() => {
   channel.push("new_msg", "Some string")
     .receive("ok", resp => { console.log("got a response:", resp) })
     .receive("error", err => { console.log("got an error:", err) })
+
+  channel.push("sum", [1,2,3])
+    .receive("ok", resp => { console.log("got a response:", resp) })
+    .receive("error", err => { console.log("got an error:", err) })
+
+  channel.push("double", [1,2,3])
+    .receive("ok", resp => { console.log("got a response:", resp) })
+    .receive("error", err => { console.log("got an error:", err) })
+
 }, 1000)
 
 

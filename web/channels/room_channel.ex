@@ -10,6 +10,16 @@ defmodule WsDemo.RoomChannel do
   end
 
   def handle_in("new_msg", _payload, socket) do
-    {:reply, {:ok, "foo"}, socket}
+    {:reply, {:ok, %{}}, socket}
+  end
+
+  def handle_in("sum", payload, socket) when is_list(payload) do
+    result = Enum.reduce payload, 0, &+/2
+    {:reply, {:ok, result}, socket}
+  end
+
+  def handle_in("double", payload, socket) when is_list(payload) do
+    result = Enum.map payload, fn(x) -> x * 2 end
+    {:reply, {:ok, result}, socket}
   end
 end
